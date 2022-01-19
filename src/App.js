@@ -5,10 +5,12 @@ import awsconfig from './aws-exports';
 import { listTodos } from './graphql/queries'
 import { createTodo } from './graphql/mutations'
 import { TodoList } from './components'
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(awsconfig);
 
-const App = () => {
+const App = ({ signOut, user }) => {
   const [todoList, setTodoList] = useState([])
 
   const fetchTodos = async () => {
@@ -33,10 +35,13 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1 className='App-header-title'>To Do</h1>
+        <button className='sign-out-button' onClick={signOut}>Sign out</button>
       </header>
       <TodoList list={todoList} createTodo={addTodo} />
+      <div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App)

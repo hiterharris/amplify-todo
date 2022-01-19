@@ -13,3 +13,10 @@
 .App-header-title {
   text-decoration: underline;
 }
+
+.sign-out-button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 16px;
+}
